@@ -16,6 +16,12 @@ import javax.servlet.http.HttpServletResponse;
  * @author lpeters
  */
 public class HelloWorldServlet extends HttpServlet {
+    private int counter;
+    
+    @Override
+    public void init() throws ServletException {
+        counter = 0;
+    }
 
     /**
      * Processes requests for both HTTP <code>GET</code> and <code>POST</code>
@@ -41,13 +47,15 @@ public class HelloWorldServlet extends HttpServlet {
             out.println("</body>");
             out.println("</html>");*/
         //}
-        System.out.println("HelloWorldServlet is running.");
+        System.out.println(counter + ": HelloWorldServlet is running.");
+        counter += 1;
         String firstName = request.getParameter("fName");
         String lastName = request.getParameter("lName");
         System.out.println("FN: "+firstName);
         System.out.println("LN: "+lastName);
         request.setAttribute("firstname",firstName);
         request.setAttribute("lastname",lastName);
+        request.setAttribute("guestcount","<p>You are visitor #"+counter+"!</p>");
         if (firstName != null && lastName != null && firstName != "" && lastName != "") {
             getServletContext().getRequestDispatcher("/sayHello.jsp").forward(request, response);
         } else {

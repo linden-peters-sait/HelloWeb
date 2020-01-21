@@ -13,5 +13,6 @@
     </head>
     <body>
         <h1>Hello ${firstname} ${lastname}!</h1>
+        ${guestcount}
     </body>
 </html>

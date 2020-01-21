@@ -20,5 +20,6 @@
                 <input type="submit" />
             </form>
         </div>
+        ${guestcount}
     </body>
 </html>
