@@ -29,9 +29,9 @@ public class HelloWorldServlet extends HttpServlet {
     protected void processRequest(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         response.setContentType("text/html;charset=UTF-8");
-        try (PrintWriter out = response.getWriter()) {
+        //try (PrintWriter out = response.getWriter()) {
             /* TODO output your page here. You may use following sample code. */
-            out.println("<!DOCTYPE html>");
+            /*out.println("<!DOCTYPE html>");
             out.println("<html>");
             out.println("<head>");
             out.println("<title>Servlet HelloWorldServlet</title>");            
@@ -39,7 +39,19 @@ public class HelloWorldServlet extends HttpServlet {
             out.println("<body>");
             out.println("<h1>Servlet HelloWorldServlet at " + request.getContextPath() + "</h1>");
             out.println("</body>");
-            out.println("</html>");
+            out.println("</html>");*/
+        //}
+        System.out.println("HelloWorldServlet is running.");
+        String firstName = request.getParameter("fName");
+        String lastName = request.getParameter("lName");
+        System.out.println("FN: "+firstName);
+        System.out.println("LN: "+lastName);
+        request.setAttribute("firstname",firstName);
+        request.setAttribute("lastname",lastName);
+        if (firstName != null && lastName != null && firstName != "" && lastName != "") {
+            getServletContext().getRequestDispatcher("/sayHello.jsp").forward(request, response);
+        } else {
+            getServletContext().getRequestDispatcher("/helloWorldForm.jsp").forward(request, response);
         }
     }
 
